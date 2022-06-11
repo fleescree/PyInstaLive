@@ -49,6 +49,7 @@ def validate_settings():
             globals.config.cmd_on_started = globals.config.parser_object.get("pyinstalive", "cmd_on_started")
             globals.config.cmd_on_ended = globals.config.parser_object.get("pyinstalive", "cmd_on_ended")
             globals.config.ffmpeg_path = globals.config.parser_object.get("pyinstalive", "ffmpeg_path")
+            globals.config.user_agent = globals.config.parser_object.get("pyinstalive", "user_agent")
 
             if globals.args.download_path:
                 globals.config.download_path = globals.args.download_path
@@ -100,7 +101,22 @@ def validate_settings():
         return False
 
 def run():
-    logging.disable()
+    # import requests
+    # import logging
+
+    # import http.client
+    # http.client.HTTPConnection.debuglevel = 1
+
+    # You must initialize logging, otherwise you'll not see debug output.
+    # logging.basicConfig()
+    # logging.getLogger().setLevel(logging.DEBUG)
+    # requests_log = logging.getLogger("requests.packages.urllib3")
+    # requests_log.setLevel(logging.DEBUG)
+    # requests_log.propagate = True
+
+    # logging.disable()
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
     globals.init()
     globals.config.parser_object = configparser.ConfigParser()
 
@@ -119,6 +135,8 @@ def run():
     parser.add_argument('-gc', '--generate-comments', dest='generate_comments_path', type=str, required=False, help="Generate a comments log file. Requires a ivestream data file.")
     parser.add_argument('-gv', '--generate-video', dest='generate_video_path', type=str, required=False, help="Generate a comments log file. Requires a livestream data file or folder.")
     parser.add_argument('-na', '--no-assemble', dest='no_assemble', action='store_true', help="Do not assemble the downloaded livestream data files. Overrides the configuration file setting.")
+    parser.add_argument('-ua', '--user-agent', dest='user_agent', type=str, required=False, help="Browser User-Agent for making the calls to Instagram.")
+
 
     globals.args, unknown_args = parser.parse_known_args()  # Parse arguments
     

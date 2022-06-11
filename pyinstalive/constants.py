@@ -17,6 +17,7 @@ clear_temp_files = False
 use_locks = True
 no_assemble = False
 log_to_file = True
+user_agent = 
     """
 
 

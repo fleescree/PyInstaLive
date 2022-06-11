@@ -13,3 +13,4 @@ class Config:
     log_to_file = True
     no_assemble = False
     use_locks = True
+    user_agent = None

@@ -1,3 +1,4 @@
+from asyncio.log import logger
 from datetime import datetime
 import json
 
@@ -22,6 +23,7 @@ def do_login():
 
 def get_login_state():
     response = globals.session.session.get(Constants.BASE_WEB)
+    logger.info(response.text)
     return helpers.get_shared_data(response.text)
 
 def get_user_info():

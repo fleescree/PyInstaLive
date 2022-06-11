@@ -83,6 +83,7 @@ class Download:
                 mpd_download_timeout=3,
                 download_timeout=3,
                 callback_check=api.do_heartbeat,
+                user_agent = getattr(globals.args, "user_agent",None) or getattr(globals.config, "user_agent", None) or Constants.BASE_HEADERS["User-Agent"],
                 ffmpeg_binary=globals.config.ffmpeg_path)
 
             self.livestream_owner = self.livestream_object_init.get('broadcast_owner').get("username")
